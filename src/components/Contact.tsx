@@ -1,4 +1,4 @@
-import { openingHours, socials } from "../../constants";
+import { openingHours, socials, storeInfo } from "../../constants";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
 import gsap from "gsap";
@@ -102,62 +102,57 @@ const Contact = () => {
           </p>
         </div>
 
-        {/* Right Column - Bento Box Contact Info */}
+        {/* Right Column - Contact Form & Info */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:col-span-7 w-full text-left">
           
-          <div className="contact-block bg-white/[0.03] backdrop-blur-3xl border border-white/10 p-8 md:p-10 rounded-[2rem] hover:bg-white/[0.06] transition-all duration-500 group flex flex-col justify-center">
-            <h3 className="uppercase text-yellow tracking-[0.2em] text-xs mb-6 font-bold">Visit Our Bar</h3>
-            <p className="text-lg lg:text-xl font-serif text-white/90 leading-snug group-hover:text-white transition-colors">
-              456, Raq Blvd. #404,
-              Los Angeles, CA 90210
+          {/* Contact Form */}
+          <div className="bg-white/[0.03] backdrop-blur-3xl border border-white/10 p-8 md:p-10 rounded-[2rem] hover:bg-white/[0.06] transition-all duration-500 md:col-span-2 flex flex-col">
+            <h3 className="uppercase text-yellow tracking-[0.2em] text-xs mb-6 font-bold">Send us a message</h3>
+            <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <input 
+                  type="text" 
+                  placeholder="Your Name" 
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white/90 focus:outline-none focus:border-yellow transition-colors font-serif placeholder:text-white/30" 
+                />
+                <input 
+                  type="email" 
+                  placeholder="Your Email" 
+                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white/90 focus:outline-none focus:border-yellow transition-colors font-serif placeholder:text-white/30" 
+                />
+              </div>
+              <input 
+                type="text" 
+                placeholder="Subject" 
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white/90 focus:outline-none focus:border-yellow transition-colors font-serif placeholder:text-white/30" 
+              />
+              <textarea 
+                placeholder="Message" 
+                rows={4} 
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white/90 focus:outline-none focus:border-yellow transition-colors font-serif resize-none placeholder:text-white/30"
+              ></textarea>
+              <button 
+                type="submit" 
+                className="w-full py-4 bg-yellow text-black font-bold uppercase tracking-widest rounded-xl hover:bg-white transition-colors mt-2"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+
+          {/* Address */}
+          <div className="bg-white/[0.03] backdrop-blur-3xl border border-white/10 p-8 rounded-[2rem] hover:bg-white/[0.06] transition-all duration-500 flex flex-col justify-center">
+            <h3 className="uppercase text-yellow tracking-[0.2em] text-xs mb-4 font-bold">Visit Our Bar</h3>
+            <p className="text-base lg:text-lg font-serif text-white/90 leading-snug">
+              {storeInfo.address}
             </p>
           </div>
 
-          <div className="contact-block bg-white/[0.03] backdrop-blur-3xl border border-white/10 p-8 md:p-10 rounded-[2rem] hover:bg-white/[0.06] transition-all duration-500 flex flex-col justify-center">
-            <h3 className="uppercase text-yellow tracking-[0.2em] text-xs mb-6 font-bold">Contact Us</h3>
-            <div className="space-y-2">
-              <p className="text-lg lg:text-xl font-serif text-white/90 hover:text-yellow transition-colors cursor-pointer inline-block">(555) 987-6543</p>
-              <br/>
-              <p className="text-lg lg:text-xl font-serif text-white/90 hover:text-yellow transition-colors cursor-pointer inline-block">hello@jsmcocktail.com</p>
-            </div>
-          </div>
-
-          <div className="contact-block bg-white/[0.03] backdrop-blur-3xl border border-white/10 p-8 md:p-10 rounded-[2rem] hover:bg-white/[0.06] transition-all duration-500 md:col-span-2 flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
-            <div className="flex-1 w-full max-w-sm">
-              <h3 className="uppercase text-yellow tracking-[0.2em] text-xs mb-6 font-bold">Open Every Day</h3>
-              <div className="flex flex-col gap-3">
-                {openingHours.map((time) => (
-                  <div key={time.day} className="flex justify-between items-center font-serif text-base lg:text-lg border-b border-white/5 pb-2 last:border-0 last:pb-0">
-                    <span className="text-white/90">{time.day}</span>
-                    <span className="text-white/50">{time.time}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex-shrink-0">
-              <h3 className="uppercase text-yellow tracking-[0.2em] text-xs mb-6 font-bold md:text-right">Socials</h3>
-              <div className="flex gap-4 md:justify-end">
-                {socials.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.name}
-                    className="p-4 bg-white/5 border border-white/10 rounded-full hover:bg-yellow hover:border-yellow transition-all duration-300 group inline-flex items-center justify-center"
-                    onMouseMove={handleMagnetic}
-                    onMouseLeave={resetMagnetic}
-                  >
-                    <img 
-                      src={social.icon} 
-                      alt="" 
-                      className="w-5 h-5 opacity-70 group-hover:opacity-100 group-hover:brightness-0 transition-all duration-300" 
-                    />
-                  </a>
-                ))}
-              </div>
-            </div>
+          {/* Contact Details */}
+          <div className="bg-white/[0.03] backdrop-blur-3xl border border-white/10 p-8 rounded-[2rem] hover:bg-white/[0.06] transition-all duration-500 flex flex-col justify-center">
+            <h3 className="uppercase text-yellow tracking-[0.2em] text-xs mb-4 font-bold">Contact Us</h3>
+            <p className="text-base lg:text-lg font-serif text-white/90 hover:text-yellow transition-colors cursor-pointer inline-block">{storeInfo.contact.phone}</p>
+            <p className="text-base lg:text-lg font-serif text-white/90 hover:text-yellow transition-colors cursor-pointer inline-block mt-2">{storeInfo.contact.email}</p>
           </div>
 
         </div>
