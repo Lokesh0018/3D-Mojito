@@ -20,8 +20,14 @@ body {
     width: 100%;
     background-color: black;
     color: white;
-    scroll-behavior: smooth;
     overflow-x: hidden;
+}
+
+@utility container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    @apply sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1280px];
 }
 
 @utility flex-center {
@@ -108,11 +114,7 @@ body {
                 @apply flex lg:flex-row flex-col w-full gap-10 justify-between items-center lg:items-end mx-auto;
 
                 p:nth-of-type(2) {
-                    @apply font-modern-negra text-6xl text-yellow max-w-xl;
-                }
-
-                p:last-of-type {
-                    @apply 2xl:text-start text-center;
+                    @apply font-modern-negra text-6xl text-yellow max-w-xl md:text-left text-center;
                 }
 
                 .view-cocktails {

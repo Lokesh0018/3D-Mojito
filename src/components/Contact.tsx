@@ -1,4 +1,4 @@
-import { openingHours, socials, storeInfo } from "../../constants";
+import { storeInfo } from "../../constants";
 import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
 import gsap from "gsap";
@@ -58,16 +58,6 @@ const Contact = () => {
     { scope: containerRef }
   );
 
-  const handleMagnetic = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const el = e.currentTarget;
-    const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    gsap.to(el, { x: x * 0.4, y: y * 0.4, duration: 0.5, ease: "power2.out" });
-  };
-  const resetMagnetic = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    gsap.to(e.currentTarget, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.3)" });
-  };
 
   return (
     <footer id="contact" ref={containerRef} className="relative w-full min-h-dvh flex items-center justify-center overflow-hidden py-20 px-5 radial-gradient text-left">
