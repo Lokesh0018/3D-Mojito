@@ -23,6 +23,7 @@ const Hero = () => {
       duration: 1.8,
       ease: "expo.out",
       stagger: 0.05,
+      delay: 2.2,
     });
 
     gsap.from(paragraphSplit.lines, {
@@ -31,7 +32,7 @@ const Hero = () => {
       duration: 1.8,
       ease: "expo.out",
       stagger: 0.05,
-      delay: 1,
+      delay: 3.2,
     });
 
     gsap.timeline({
@@ -85,12 +86,12 @@ const Hero = () => {
         <img
           src="/images/hero-left-leaf.png"
           alt="" aria-hidden="true"
-          className="left-leaf"
+          className="left-leaf parallax-leaf"
         />
         <img
           src="/images/hero-right-leaf.png"
           alt="" aria-hidden="true"
-          className="right-leaf"
+          className="right-leaf parallax-leaf-inverse"
         />
 
         <div className="body">

@@ -1,5 +1,5 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Lenis from 'lenis';
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -13,10 +13,13 @@ import About from './components/About';
 import Art from './components/Art';
 import Menu from './components/Menu';
 import Contact from './components/Contact';
+import Preloader from './components/Preloader';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const App = () => {
+  const [appLoaded, setAppLoaded] = useState(false);
+
   useEffect(() => {
     const lenis = new Lenis();
 
@@ -33,8 +36,36 @@ const App = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      const xPos = (clientX / window.innerWidth - 0.5) * 40; 
+      const yPos = (clientY / window.innerHeight - 0.5) * 40;
+
+      gsap.to('.parallax-leaf', {
+        x: xPos,
+        y: yPos,
+        duration: 1,
+        ease: 'power2.out'
+      });
+      
+      gsap.to('.parallax-leaf-inverse', {
+        x: -xPos,
+        y: -yPos,
+        duration: 1,
+        ease: 'power2.out'
+      });
+    };
+
+    if (appLoaded) {
+      window.addEventListener('mousemove', handleMouseMove);
+    }
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [appLoaded]);
+
   return (
     <main>
+        {!appLoaded && <Preloader onComplete={() => setAppLoaded(true)} />}
         <Navbar />
         <Hero />
         <Cocktails />

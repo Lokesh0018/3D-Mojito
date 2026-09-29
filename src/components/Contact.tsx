@@ -35,8 +35,8 @@ const Contact = () => {
 
   return (
    <footer id="contact" className="">
-    <img src="/images/footer-right-leaf.png" alt="" aria-hidden="true" id="f-right-leaf" />
-    <img src="/images/footer-left-leaf.png" alt="" aria-hidden="true" id="f-left-leaf" />
+    <img src="/images/footer-right-leaf.png" alt="" aria-hidden="true" id="f-right-leaf" className="parallax-leaf-inverse" />
+    <img src="/images/footer-left-leaf.png" alt="" aria-hidden="true" id="f-left-leaf" className="parallax-leaf" />
 
     <div className="content">
         <h2>Where to Find Us</h2>

@@ -73,8 +73,8 @@ const Menu = () => {
 
   return (
     <section id="menu" ref={containerRef} aria-labelledby="menu-heading">
-      <img src="/images/slider-left-leaf.png" alt="" aria-hidden="true" id="m-left-leaf" />
-      <img src="/images/slider-right-leaf.png" alt="" aria-hidden="true" id="m-right-leaf" />
+      <img src="/images/slider-left-leaf.png" alt="" aria-hidden="true" id="m-left-leaf" className="parallax-leaf" />
+      <img src="/images/slider-right-leaf.png" alt="" aria-hidden="true" id="m-right-leaf" className="parallax-leaf-inverse" />
 
       <h2 id="menu-heading" className="sr-only">
         Cocktail Menu
