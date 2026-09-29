@@ -15,6 +15,7 @@ type Cocktail = {
 };
 
 const Menu = () => {
+  const containerRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
@@ -51,7 +52,7 @@ const Menu = () => {
         ease: 'power1.inOut',
       }
     );
-  }, [currentIndex]);
+  }, { dependencies: [currentIndex], scope: containerRef });
 
   const totalCocktails = allCocktails.length;
 
@@ -71,9 +72,9 @@ const Menu = () => {
   const nextCocktail = getCocktailAt(1);
 
   return (
-    <section id="menu" aria-labelledby="menu-heading">
-      <img src="/images/slider-left-leaf.png" alt="left-leaf" id="m-left-leaf" />
-      <img src="/images/slider-right-leaf.png" alt="right-leaf" id="m-right-leaf" />
+    <section id="menu" ref={containerRef} aria-labelledby="menu-heading">
+      <img src="/images/slider-left-leaf.png" alt="" aria-hidden="true" id="m-left-leaf" />
+      <img src="/images/slider-right-leaf.png" alt="" aria-hidden="true" id="m-right-leaf" />
 
       <h2 id="menu-heading" className="sr-only">
         Cocktail Menu

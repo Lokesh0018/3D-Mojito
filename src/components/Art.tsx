@@ -4,15 +4,18 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 
+import { useRef } from "react";
+
 const Art = () => {
     const isMobile = useMediaQuery({maxWidth: 767});
+    const containerRef = useRef<HTMLDivElement>(null);
     
     useGSAP(() => {
         const start = isMobile ? 'top 20%' : 'top top';
 
         const maskTimeline = gsap.timeline({
             scrollTrigger: {
-                trigger: '#art',
+                trigger: containerRef.current,
                 start, 
                 scrub: 1.5,
                 pin: true
@@ -26,10 +29,10 @@ const Art = () => {
         .to('.masked-img', {scale: 1.3, maskPosition: 'center', maskSize: '400%', duration: 1, ease: 'power1.inOut'})
         .to('#masked-content', { opacity: 1, duration: 1, ease: 'power1.inOut '})
 
-    })
+    }, { scope: containerRef })
 
   return (
-    <div id="art">
+    <div id="art" ref={containerRef}>
         <div className="container mx-auto h-full pt-20">
              <h2 className="will-fade">The ART</h2>
 
@@ -37,7 +40,7 @@ const Art = () => {
                 <ul className="space-y-4 will-fade">
                     {goodLists.map((feature, index) => (
                         <li key={index} className="flex items-center gap-2">
-                            <img src="/images/check.png" alt="check" />
+                            <img src="/images/check.png" alt="" aria-hidden="true" />
                             <p>{feature}</p>
                         </li>
                 
@@ -51,7 +54,7 @@ const Art = () => {
                  <ul className="space-y-4 will-fade">
                     {featureLists.map((feature, index) => (
                         <li key={index} className="flex items-center justify-start gap-2">
-                            <img src="/images/check.png" alt="check" />
+                            <img src="/images/check.png" alt="" aria-hidden="true" />
                             <p className="md:w-fit w-60">{feature}</p>
                         </li>
                 

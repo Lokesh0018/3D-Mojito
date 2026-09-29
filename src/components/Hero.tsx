@@ -62,11 +62,17 @@ const Hero = () => {
 
     if(!videoRef.current) return;
     
-    videoRef.current.onloadedmetadata = () => {
+    const handleLoadedMetadata = () => {
       if(!videoRef.current) return;
         tl.to(videoRef.current, {
             currentTime: videoRef.current.duration
         })
+    }
+
+    if (videoRef.current.readyState >= 1) {
+      handleLoadedMetadata();
+    } else {
+      videoRef.current.onloadedmetadata = handleLoadedMetadata;
     }
 
     
@@ -78,12 +84,12 @@ const Hero = () => {
         <h1 className="title">MOJITO</h1>
         <img
           src="/images/hero-left-leaf.png"
-          alt="left-leaf"
+          alt="" aria-hidden="true"
           className="left-leaf"
         />
         <img
           src="/images/hero-right-leaf.png"
-          alt="right-leaf"
+          alt="" aria-hidden="true"
           className="right-leaf"
         />
 
